@@ -36,3 +36,21 @@
 - [ ] Generating Prime Numbers : Sieve of Eratosthenes
 - [ ] Generating Sexey Primes : TCS Digital Question
 - [ ] 
+
+
+----------------------------------------------------------
+
+# Concepts
+
+## String
+Array of characters
+
+```c
+	#include <stdio.h>
+	int main () {
+		char hello[] = "Hello World";
+		char world[10];
+		world = "world";
+		return 0;
+	}
+```
