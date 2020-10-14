@@ -49,8 +49,24 @@ Array of characters
 	#include <stdio.h>
 	int main () {
 		char hello[] = "Hello World";
-		char world[10];
-		world = "world";
+		printf ("%s\n", hello);
 		return 0;
+	}
+```
+
+## String Operations
+
+### Legnth of string
+In C string is ended by a `null terminator` character `\0`
+
+```c
+	#include <stdio.h>
+	
+	int str_len ( char str[] ) {
+		int i = 0;
+		while ( str[i] != '\0' ) {
+			i++;
+		}
+		return i;
 	}
 ```
