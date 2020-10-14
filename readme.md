@@ -67,6 +67,14 @@ Array of characters
 ### Length of string
 In C string is ended by a `null terminator` character `\0`
 
+> Algo
+```
+	1: initlize i = 0
+	2: increment i until str[i] == '\0'
+	3: return i
+```
+
+> Code in C
 ```c
 	#include <stdio.h>
 	
@@ -89,3 +97,205 @@ it returns 3 values:
 - `0`: A value equal to zero when both strings are found to be identical.
 - `greater than zero`:  A value greater than zero is returned when the first not matching character in leftStr have the greater ASCII value than the corresponding character in rightStr
 - `less than zero`: A value less than zero is returned when the first not matching character in leftStr have lesser ASCII value than the corresponding character in rightStr.
+
+
+-------------------------------------------
+
+# Pattern Design
+
+## Square pattern
+
+### Simple square
+```
+	h = 3
+	
+	* * *
+	* * *
+	* * *
+```
+
+```
+		0   1   2
+	  -------------
+	0 | * | * | * |
+	  +---+---+---+
+	1 | * | * | * |
+	  +---+---+---+
+	2 | * | * | * |
+	  -------------
+```
+
+> code in c
+```c
+	#include <stdio.h>
+
+	void print_square ( int height ) {
+		int width = height;
+		int i = 0, j = 0;
+
+		for ( i = 0; i < height; i++ ) {
+			for ( j = 0; j < width; j++ ) {
+				printf ( "*" );
+			}
+			printf ( "\n" );
+		}
+	}
+```
+
+### defective square
+```
+	* * 
+	* * *
+	* * *
+```
+
+```
+	    0   1   2
+	  -------------
+	0 | * | * |   |
+	  +---+---+---+
+	1 | * | * | * |
+	  +---+---+---+
+	2 | * | * | * |
+	  -------------
+```
+> code in c
+```c
+	#include <stdio.h>
+
+	void print_square ( int height ) {
+		int width = height;
+		int i = 0, j = 0;
+
+		for ( i = 0; i < height; i++ ) {
+			for ( j = 0; j < width; j++ ) {
+				
+				if ( i != 0 && j != 2 ) {
+					printf ( "*" );
+				}
+
+			}
+			printf ( "\n" );
+		}
+	}
+```
+
+### non diagnol square
+```
+	* * 
+	*   *
+	  * *
+```
+
+```
+	    0   1   2
+	  -------------
+	0 | * | * |   |
+	  +---+---+---+
+	1 | * |   | * |
+	  +---+---+---+
+	2 |   | * | * |
+	  -------------
+```
+
+```
+	Empty on
+	0 2
+	1 1
+	2 0
+```
+
+> code in c
+```c
+	#include <stdio.h>
+
+	void print_square ( int height ) {
+		int width = height;
+		int i = 0, j = 0;
+
+		for ( i = 0; i < height; i++ ) {
+			for ( j = 0; j < width; j++ ) {
+				
+				if ((i != 0 && j != 2) || 
+					(i != 1 && j != 1) || 
+					(i != 2 && j != 0)) {
+					printf ( "*" );
+				}
+
+			}
+			printf ( "\n" );
+		}
+	}
+```
+
+```
+	given:
+	h = 3
+	w = 3
+
+	i j
+	0 2
+	1 1
+	2 0
+
+	j = (h - 1) - i;
+```
+
+> code in c
+```c
+	#include <stdio.h>
+
+	void print_square ( int height ) {
+		int width = height;
+		int i = 0, j = 0;
+
+		for ( i = 0; i < height; i++ ) {
+			for ( j = 0; j < width; j++ ) {
+				
+				if ( j != (height - 1) - i ) {
+					printf ( "*" );
+				}
+
+			}
+			printf ( "\n" );
+		}
+	}
+```
+
+
+### triangle
+```
+	h = 3
+
+	    *    
+	  * * *  
+	* * * * *
+```
+
+```
+	    0   1   2   3   4
+	  ---------------------
+	0 |   |   | * |   |   |
+	  +---+---+---+---+---+
+	1 |   | * | * | * |   |
+	  +---+---+---+---+---+
+	2 | * | * | * | * | * |
+	  --------------------
+```
+
+```
+	Empty on
+	0 0
+	0 1
+	0 3
+	0 4
+
+	1 0
+	1 4
+
+	given
+	height = 3
+
+	implies
+	width = (2 * height) - 1
+```
